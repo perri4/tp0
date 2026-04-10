@@ -14,7 +14,9 @@ int main(void)
 
 	/* ---------------- LOGGING ---------------- */
 
-	logger = iniciar_logger();
+	logger = iniciar_logger();  //RESUELTO
+
+	log_info(logger, "hola! Soy un log") ; //RESUELTO PRRI
 
 	// Usando el logger creado previamente
 	// Escribi: "Hola! Soy un log"
@@ -27,8 +29,14 @@ int main(void)
 	// Usando el config creado previamente, leemos los valores del config y los 
 	// dejamos en las variables 'ip', 'puerto' y 'valor'
 
+	ip = config_get_string_value (config, "IP");
+	puertos = config_get_string_value (config, "PUERTO");
+	valor = config_get_string_value (config, "CLAVE");
+	
 	// Loggeamos el valor de config
 
+	log_info(logger, "IP: %s", ip); //lof_info(nuevo log, que muestro por pantalla con parametros y toda la bola)
+	....
 
 	/* ---------------- LEER DE CONSOLA ---------------- */
 
@@ -54,8 +62,10 @@ int main(void)
 
 t_log* iniciar_logger(void)
 {
-	t_log* nuevo_logger;
+	t_log* nuevo_logger; //esto habria que editar
 
+	nuevo_logger = log_create("tp0.log", "crear tp0", true, LOG_LEVEL_INFO)
+	
 	return nuevo_logger;
 }
 
@@ -63,6 +73,8 @@ t_config* iniciar_config(void)
 {
 	t_config* nuevo_config;
 
+	nuevo_config = config_create("https://github.com/perri4/tp0/edit/master/client/src/client.c/cleinte.config"); 
+	
 	return nuevo_config;
 }
 
