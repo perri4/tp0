@@ -35,7 +35,7 @@ int main(void)
 	
 	// Loggeamos el valor de config
 
-	log_info(logger, "IP: %s", ip); //lof_info(nuevo log, que muestro por pantalla con parametros y toda la bola)
+	log_info(logger, "CLAVE: %s", valor); //lof_info(nuevo log, que muestro por pantalla con parametros y toda la bola)
 	....
 
 	/* ---------------- LEER DE CONSOLA ---------------- */
@@ -50,6 +50,7 @@ int main(void)
 	conexion = crear_conexion(ip, puerto);
 
 	// Enviamos al servidor el valor de CLAVE como mensaje
+	enviar_mensaje(valor, conexion);
 
 	// Armamos y enviamos el paquete
 	paquete(conexion);
@@ -97,6 +98,8 @@ void paquete(int conexion)
 	// Ahora toca lo divertido!
 	char* leido;
 	t_paquete* paquete;
+
+	paquete = crear_paquete();
 
 	// Leemos y esta vez agregamos las lineas al paquete
 
