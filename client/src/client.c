@@ -18,7 +18,8 @@ int main(void)
 
 	// Usando el logger creado previamente
 	// Escribi: "Hola! Soy un log"
-
+	
+	log_info(logger, "hola! soy un log :)");
 
 	/* ---------------- ARCHIVOS DE CONFIGURACION ---------------- */
 
@@ -27,7 +28,17 @@ int main(void)
 	// Usando el config creado previamente, leemos los valores del config y los 
 	// dejamos en las variables 'ip', 'puerto' y 'valor'
 
+	ip = config_get_string_value(config, "IP");
+	puerto = config_get_string_value(config, "PUERTO");
+	valor = config_get_string_value(config, "CLAVE");
+
 	// Loggeamos el valor de config
+	esperar();
+	log_info(logger, "IP: %s", ip);
+	esperar();
+	log_info(logger, "PUERTO: %s", puerto);
+	esperar();
+	log_info(logger, "VALOR: %s", valor);
 
 
 	/* ---------------- LEER DE CONSOLA ---------------- */
@@ -46,8 +57,7 @@ int main(void)
 	// Armamos y enviamos el paquete
 	paquete(conexion);
 
-	terminar_programa(conexion, logger, config);
-
+	terminar_programa(conexion, logger, config);		
 	/*---------------------------------------------------PARTE 5-------------------------------------------------------------*/
 	// Proximamente
 }
@@ -56,13 +66,15 @@ t_log* iniciar_logger(void)
 {
 	t_log* nuevo_logger;
 
+	nuevo_logger = log_create("tp0.log", "logeando en archivo 'tp0.log'", true, LOG_LEVEL_INFO);
+
 	return nuevo_logger;
 }
 
 t_config* iniciar_config(void)
 {
 	t_config* nuevo_config;
-
+	nuevo_config = config_create("/home/utnso/Desktop/tp0/client/cliente.config");
 	return nuevo_config;
 }
 
@@ -97,4 +109,10 @@ void terminar_programa(int conexion, t_log* logger, t_config* config)
 {
 	/* Y por ultimo, hay que liberar lo que utilizamos (conexion, log y config) 
 	  con las funciones de las commons y del TP mencionadas en el enunciado */
+	log_destroy(logger);
+	config_destroy(config);
+}
+
+void esperar(){
+	sleep(2);
 }

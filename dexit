@@ -1,0 +1,28 @@
+[33mcommit 21177e30658fbccf138764d04f738fe15bf5bde7[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Agustin Ranieri <aguseranieri@gmail.com>
+Date:   Sat Mar 28 18:19:59 2026 -0300
+
+    Remove crypto library from client and server settings.mk
+
+[1mdiff --git a/client/settings.mk b/client/settings.mk[m
+[1mindex 2d6ed6f..7baa5ee 100644[m
+[1m--- a/client/settings.mk[m
+[1m+++ b/client/settings.mk[m
+[36m@@ -1,5 +1,5 @@[m
+ # Libraries[m
+[31m-LIBS=commons pthread readline m crypto[m
+[32m+[m[32mLIBS=commons pthread readline m[m
+ [m
+ # Compiler flags[m
+ CDEBUG=-g -Wall -DDEBUG -fdiagnostics-color=always[m
+[1mdiff --git a/server/settings.mk b/server/settings.mk[m
+[1mindex 495d757..15cb3da 100644[m
+[1m--- a/server/settings.mk[m
+[1m+++ b/server/settings.mk[m
+[36m@@ -1,5 +1,5 @@[m
+ # Libraries[m
+[31m-LIBS=commons pthread readline m crypto[m
+[32m+[m[32mLIBS=commons pthread readline m[m
+ [m
+ # Custom libraries' paths[m
+ SHARED_LIBPATHS=[m
