@@ -14,7 +14,9 @@ int main(void)
 
 	/* ---------------- LOGGING ---------------- */
 
-	logger = iniciar_logger();
+	logger = iniciar_logger();  //RESUELTO
+
+	log_info(logger, "hola! Soy un log") ; //RESUELTO PRRI
 
 	// Usando el logger creado previamente
 	// Escribi: "Hola! Soy un log"
@@ -40,6 +42,8 @@ int main(void)
 	esperar();
 	log_info(logger, "VALOR: %s", valor);
 
+	log_info(logger, "CLAVE: %s", valor); //lof_info(nuevo log, que muestro por pantalla con parametros y toda la bola)
+	....
 
 	/* ---------------- LEER DE CONSOLA ---------------- */
 
@@ -53,6 +57,7 @@ int main(void)
 	conexion = crear_conexion(ip, puerto);
 
 	// Enviamos al servidor el valor de CLAVE como mensaje
+	enviar_mensaje(valor, conexion);
 
 	// Armamos y enviamos el paquete
 	paquete(conexion);
@@ -64,7 +69,7 @@ int main(void)
 
 t_log* iniciar_logger(void)
 {
-	t_log* nuevo_logger;
+	t_log* nuevo_logger; //esto habria que editar
 
 	nuevo_logger = log_create("tp0.log", "logeando en archivo 'tp0.log'", true, LOG_LEVEL_INFO);
 
@@ -98,6 +103,8 @@ void paquete(int conexion)
 	char* leido;
 	t_paquete* paquete;
 
+	paquete = crear_paquete();
+
 	// Leemos y esta vez agregamos las lineas al paquete
 
 
@@ -114,5 +121,5 @@ void terminar_programa(int conexion, t_log* logger, t_config* config)
 }
 
 void esperar(){
-	sleep(2);
+	sleep(1);
 }
